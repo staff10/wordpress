@@ -1,0 +1,20 @@
+version: "3.1"
+
+services:
+
+    wordpress:
+        image: wordpress
+        links:
+               - wordpress_db:mysql
+        ports:
+               - 8080:80
+    wordpress_db:
+        image: mariadb
+        environment:
+                MYSQL_ROOT_PASSWORD: esgi
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+                - wordpress_db:db
+        ports:
+                - 8181:80
